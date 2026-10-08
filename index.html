@@ -157,6 +157,10 @@ button { font: inherit; color: inherit; }
   box-shadow: 0 0 0 6px rgba(0, 0, 0, .35); transition: opacity .4s, transform .3s var(--ease); }
 .wk.playing .play { opacity: 0; transform: translate(-50%, -50%) scale(.8); }
 .wk-body { padding: 0 22px 22px; }
+/* "Created by Sameer Saifi" badge, same look as the one in the Ladakh video */
+.made-by { position: absolute; z-index: 1; top: 62px; left: 50%; transform: translateX(-50%); padding: 6px 13px; border-radius: 999px; background: #EFE8DA; color: #6B5B4B;
+  border: 1px solid rgba(255, 255, 255, .5); box-shadow: 0 4px 14px rgba(0, 0, 0, .25); font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
+.made-by b { color: #4A3A2C; font-weight: 700; }
 .wk h3 { margin: 0 0 16px; font-size: clamp(21px, 1.9vw, 25px); font-weight: 500; letter-spacing: -.02em; }
 .pills { display: flex; gap: 8px; overflow: hidden; }
 .pill { flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; background: #1A1A1A; font-size: 13px; font-weight: 500; white-space: nowrap; }
@@ -245,8 +249,6 @@ footer { background: #0B0B0B; }
 @media (max-width: 1199px) {
   .wrap { max-width: 810px; }
   #selected-work { max-width: none; }
-  .stats { grid-template-columns: repeat(2, 1fr); row-gap: 56px; }
-  .stat:nth-child(3) { border-left: 0; }
   .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wk.big, .wk.small { grid-column: auto; min-height: 568px; }
   .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -277,8 +279,12 @@ footer { background: #0B0B0B; }
   .hero-copy { top: 14%; left: 24px; right: 24px; }
   .role { font-size: 15px; line-height: 1.85; }
   .name { margin-top: 18px; font-size: clamp(46px, 13.5vw, 60px); }
-  .stats { grid-template-columns: 1fr; padding-block: 60px; gap: 70px; }
-  .stat + .stat { border-left: 0; }
+  /* Stats stay one row of four, just smaller */
+  .wrap:has(> .stats) { padding-inline: 8px; }
+  .stats { padding-block: 32px; }
+  .stat { padding: 6px 4px; }
+  .stat b { font-size: clamp(20px, 6vw, 32px); }
+  .stat span { margin-top: 4px; font-size: clamp(10px, 2.8vw, 14px); line-height: 1.3; }
   .featured { padding-top: 90px; }
   .title { font-size: 34px; }
   .video-card { margin-top: 36px; }
@@ -352,6 +358,48 @@ footer { background: #0B0B0B; }
   </div>
 </div>
 
+<!-- ===================== SELECTED WORK ===================== -->
+<section class="wrap section center" id="selected-work">
+  <span class="chip rv">Work</span>
+  <h2 class="title rv d1">Selected <span class="dim">Work.</span></h2>
+  <p class="sub rv d2" style="max-width:360px">A collection of 3d Websites created for creators, brands, and digital businesses.</p>
+  <a class="btn btn-white rv d3" data-book href="#contact" style="margin-top:22px">Work with me</a>
+
+  <div class="work-grid">
+    <a class="wk big rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/india/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/L98vKw9bYqlqnZLyqu3aim6IGPQ.mp4"></video>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>Ladakh: Parallax Story</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Scroll Animation</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-5"/></svg>Speed-Optimised</span></div></div>
+    </a>
+    <a class="wk small rv d1" href="https://nj-info.in/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/IvtNM9fU2HT1oUzbuaPDevi6ic.mp4"></video>
+      <span class="made-by">Created by <b>Sameer Saifi</b></span>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>NJ Sports</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Cricket &amp; Football Community</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Telegram Landing Page</span></div></div>
+    </a>
+    <a class="wk small rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/vex/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/wxJxeKsKli9l46O5IMfxS9v4io.mp4"></video>
+      <span class="made-by">Created by <b>Sameer Saifi</b></span>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>VEX</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>Video Hero</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg>Liquid Glass UI</span></div></div>
+    </a>
+    <a class="wk big rv d1" href="https://sameersaifi07.github.io/Website-I-ve-Built/planet-jumping/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/wgikpd2ivpY3BebY13qUda6JrI.mp4"></video>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>Planet Jumping</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M3 15c-1.5 2.5 1 4 5 2.8M21 9c1.5-2.5-1-4-5-2.8"/></svg>3D Space Portal</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Interactive Animation</span></div></div>
+    </a>
+  </div>
+  <a class="btn btn-dark more rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/" target="_blank" rel="noopener">View all projects</a>
+</section>
+
 <!-- ===================== STORES I'VE BUILT ===================== -->
 <section class="wrap featured" id="stores">
   <span class="chip rv">Show Work</span>
@@ -390,46 +438,6 @@ footer { background: #0B0B0B; }
       <div class="ticker"><div class="ticker-row" data-tags="Original designs|Easy to edit|Reusable sections|Fast launch"></div></div></div>
     </article>
   </div>
-</section>
-
-<!-- ===================== SELECTED WORK ===================== -->
-<section class="wrap section center" id="selected-work">
-  <span class="chip rv">Work</span>
-  <h2 class="title rv d1">Selected <span class="dim">Work.</span></h2>
-  <p class="sub rv d2" style="max-width:360px">A collection of 3d Websites created for creators, brands, and digital businesses.</p>
-  <a class="btn btn-white rv d3" data-book href="#contact" style="margin-top:22px">Work with me</a>
-
-  <div class="work-grid">
-    <a class="wk big rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/india/" target="_blank" rel="noopener">
-      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/L98vKw9bYqlqnZLyqu3aim6IGPQ.mp4"></video>
-      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-      <div class="wk-body"><h3>Ladakh: Parallax Story</h3>
-        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Scroll Animation</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-5"/></svg>Speed-Optimised</span></div></div>
-    </a>
-    <a class="wk small rv d1" href="https://nj-info.in/" target="_blank" rel="noopener">
-      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/IvtNM9fU2HT1oUzbuaPDevi6ic.mp4"></video>
-      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-      <div class="wk-body"><h3>NJ Sports</h3>
-        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Cricket &amp; Football Community</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Telegram Landing Page</span></div></div>
-    </a>
-    <a class="wk small rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/vex/" target="_blank" rel="noopener">
-      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/wxJxeKsKli9l46O5IMfxS9v4io.mp4"></video>
-      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-      <div class="wk-body"><h3>VEX</h3>
-        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>Video Hero</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg>Liquid Glass UI</span></div></div>
-    </a>
-    <a class="wk big rv d1" href="https://sameersaifi07.github.io/Website-I-ve-Built/planet-jumping/" target="_blank" rel="noopener">
-      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/wgikpd2ivpY3BebY13qUda6JrI.mp4"></video>
-      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-      <div class="wk-body"><h3>Planet Jumping</h3>
-        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M3 15c-1.5 2.5 1 4 5 2.8M21 9c1.5-2.5-1-4-5-2.8"/></svg>3D Space Portal</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Interactive Animation</span></div></div>
-    </a>
-  </div>
-  <a class="btn btn-dark more rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/" target="_blank" rel="noopener">View all projects</a>
 </section>
 
 <!-- ===================== BRANDS ===================== -->
