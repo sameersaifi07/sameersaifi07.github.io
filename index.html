@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sameer Saifi — Web Developer &amp; CRO Expert</title>
+<meta name="description" content="Sameer Saifi — Shopify developer and CRO expert building fast, premium, high-converting stores for dropshippers, brands and businesses.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<meta property="og:title" content="Sameer Saifi — Web Developer & CRO Expert">
+<meta property="og:description" content="Fast, premium Shopify stores that move every visitor toward checkout.">
+<meta property="og:image" content="assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Instrument+Serif:ital@1&display=swap">
+<style>
+:root {
+  --bg: #000;
+  --card: #0A0A0A;
+  --card-2: #111;
+  --line: #1A1A1A;
+  --line-2: #262626;
+  --text: #fff;
+  --soft: #B5B5B5;
+  --muted: #8C8C8C;
+  --green: #22C55E;
+  --sans: "Inter", "Inter Display", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --wrap: 1200px; /* 1116px content + 42px side padding, as on Framer */
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 42px; }
+.center { text-align: center; }
+
+/* Shared bits */
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #0D0D0D; border: 1px solid var(--line-2); font-size: 13px; font-weight: 500; line-height: 1.2; }
+.gdot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.title { margin: 18px 0 0; font-size: clamp(34px, 4.4vw, 48px); font-weight: 500; line-height: 1.1; letter-spacing: -.035em; }
+.title .dim { color: var(--muted); }
+.sub { margin: 18px auto 0; max-width: 460px; color: var(--muted); font-size: 17px; line-height: 1.5; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; border-radius: 999px; font-size: 15px; font-weight: 500;
+  border: 1px solid transparent; cursor: pointer; transition: transform .3s var(--ease), background-color .25s, border-color .25s, color .25s; }
+.btn-white { background: #fff; color: #000; }
+.btn-white:hover { transform: translateY(-2px); }
+.btn-dark { background: #000; color: #fff; border-color: var(--line-2); }
+.btn-dark:hover { border-color: #fff; }
+
+/* Scroll reveal: fade + rise + un-blur (content stays visible without JS) */
+.js .rv { opacity: 0; transform: translateY(28px); filter: blur(6px); transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease); }
+.js .rv.in { opacity: 1; transform: none; filter: none; }
+.rv.d1 { transition-delay: .08s; } .rv.d2 { transition-delay: .16s; } .rv.d3 { transition-delay: .24s; }
+
+/* ===================== NAV ===================== */
+.nav { position: fixed; z-index: 50; top: 0; left: 0; right: 0; transition: background-color .3s, backdrop-filter .3s; }
+.nav.scrolled { background: rgba(0, 0, 0, .6); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 76px; }
+.logo { width: 45px; height: 45px; border-radius: 10px; background: #1B1B1B; display: grid; place-items: center; border: 1px solid #2A2A2A; }
+.logo img { width: 26px; height: auto; }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-pill { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 999px; background: #1C1C1C; font-size: 14px; font-weight: 500; transition: background-color .25s; }
+.nav-pill:hover { background: #2A2A2A; }
+.nav .btn { min-height: 36px; padding: 0 16px; font-size: 14px; margin-left: 6px; }
+.burger { display: none; width: 42px; height: 42px; border: 0; background: none; cursor: pointer; place-items: center; }
+.burger span, .burger span::before, .burger span::after { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; position: relative; transition: transform .3s var(--ease), background-color .2s; }
+.burger span::before, .burger span::after { content: ""; position: absolute; left: 0; }
+.burger span::before { top: -7px; } .burger span::after { top: 7px; }
+.menu-open .burger span { background: transparent; }
+.menu-open .burger span::before { transform: translateY(7px) rotate(45deg); }
+.menu-open .burger span::after { transform: translateY(-7px) rotate(-45deg); }
+/* Menu: full-screen black panel under a solid header; links slide in one by one */
+.menu-open, html:has(body.menu-open) { overflow: hidden; }
+.menu-open .nav { background: #000; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.mobile-menu { position: fixed; top: 76px; left: 0; right: 0; height: calc(100svh - 76px); z-index: 49; display: flex; flex-direction: column; padding: 8px 24px 32px; background: #000;
+  border-top: 1px solid var(--line); opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s; overflow-y: auto; }
+.mobile-menu a { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em;
+  border-bottom: 1px solid var(--line); opacity: 0; transform: translateY(14px); transition: opacity .45s var(--ease), transform .45s var(--ease), color .2s; }
+.mobile-menu a::after { content: "→"; font-size: 22px; color: var(--muted); }
+.mobile-menu a:hover { color: var(--soft); }
+.menu-open .mobile-menu { opacity: 1; visibility: visible; }
+.menu-open .mobile-menu a { opacity: 1; transform: none; }
+.menu-open .mobile-menu a:nth-child(2) { transition-delay: .06s; } .menu-open .mobile-menu a:nth-child(3) { transition-delay: .12s; }
+
+/* ===================== HERO ===================== */
+/* Full-width photo behind a transparent header */
+.hero { position: relative; height: 100svh; min-height: 640px; max-height: 1000px; background: #0B0B0B; overflow: hidden; }
+.hero-frame { position: relative; height: 100%; overflow: hidden; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; animation: hero-zoom 1.8s var(--ease) both; }
+@keyframes hero-zoom { from { transform: scale(1.06); opacity: 0; } to { transform: none; opacity: 1; } }
+.hero-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,0) 55%, rgba(0,0,0,.6) 80%, #000 100%),
+    linear-gradient(90deg, rgba(0,0,0,.5), rgba(0,0,0,0) 40%); }
+/* Text lines up with the logo: same max width and side padding as .wrap */
+.hero-copy { position: absolute; z-index: 2; left: 0; right: 0; top: 21%; margin-inline: auto; max-width: var(--wrap); padding-inline: 42px; }
+.role { margin: 0; font-size: clamp(20px, 2.1vw, 30px); font-weight: 500; line-height: 1.8; letter-spacing: -.01em; }
+.role span { display: block; opacity: 0; transform: translateY(16px); animation: rise .9s var(--ease) forwards; }
+.role span:nth-child(2) { animation-delay: .12s; }
+.name { margin: clamp(30px, 6vh, 60px) 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .22em; font-size: clamp(64px, 13.4vw, 196px); line-height: .9; letter-spacing: -.03em;
+  background: linear-gradient(180deg, #FFFFFF 30%, #9A9A9A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.name .first { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; padding-right: .04em; }
+.name .last { font-weight: 600; }
+.name > span { opacity: 0; transform: translateY(40px); filter: blur(10px); animation: rise-blur 1.2s var(--ease) forwards; }
+.name .first { animation-delay: .35s; } .name .last { animation-delay: .5s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@keyframes rise-blur { to { opacity: 1; transform: none; filter: none; } }
+
+/* ===================== STATS ===================== */
+.stats { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); padding-block: 48px; }
+.stats::before, .stats::after { content: ""; position: absolute; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); }
+.stats::before { top: 0; } .stats::after { bottom: 0; }
+.stat { text-align: center; padding: 12px; }
+.stat + .stat { border-left: 1px solid var(--line-2); }
+.stat b { display: block; font-size: clamp(32px, 3.2vw, 42px); font-weight: 400; letter-spacing: -.03em; line-height: 1.2; }
+.stat span { display: block; margin-top: 8px; color: var(--muted); font-size: clamp(14px, 1.3vw, 17px); }
+
+/* ===================== FEATURED ===================== */
+.featured { padding-top: 120px; }
+.featured .title { text-align: left; }
+.video-card { position: relative; margin-top: 56px; border-radius: 14px; overflow: hidden; background: #0B0B0B; aspect-ratio: 16 / 9; }
+.video-card video { width: 100%; height: 100%; object-fit: cover; }
+.video-card .shade { position: absolute; inset: 0; background: rgba(0, 0, 0, .35); transition: opacity .4s; pointer-events: none; }
+.play-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; display: inline-flex; align-items: center; gap: 16px; border: 0; background: none; cursor: pointer;
+  font-size: clamp(18px, 2.2vw, 26px); font-weight: 500; color: #fff; transition: opacity .4s; }
+.play-btn i { width: clamp(46px, 5vw, 58px); height: clamp(46px, 5vw, 58px); border-radius: 50%; background: #fff; display: grid; place-items: center; color: #000;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, .35); transition: transform .3s var(--ease); }
+.play-btn:hover i { transform: scale(1.08); }
+.video-card.playing .shade, .video-card.playing .play-btn { opacity: 0; pointer-events: none; }
+
+/* ===================== SERVICES ===================== */
+.section { padding-top: 140px; }
+.services { margin-top: 64px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; text-align: left; }
+.svc { min-width: 0; display: flex; flex-direction: column; justify-content: space-between; min-height: 348px; padding: 24px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); transition: border-color .3s; }
+.svc:hover { border-color: #2E2E2E; }
+.svc-ico { width: 48px; height: 48px; border-radius: 10px; background: #141414; display: grid; place-items: center; }
+/* Animated line icons: each .dr line wipes out and redraws, looping */
+.svc-ico svg { width: 26px; height: 26px; overflow: visible; }
+.svc-ico .dr, .pill .dr, .fp .dr { stroke-dasharray: 1; stroke-dashoffset: 0; animation: icoDraw 3.2s cubic-bezier(.65,0,.35,1) infinite; animation-delay: var(--d, 0s); }
+.svc-ico .bob { animation: icoBob 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes icoDraw { 0%, 18% { stroke-dashoffset: 0; } 40% { stroke-dashoffset: -1; } 40.01% { stroke-dashoffset: 1; } 66%, 100% { stroke-dashoffset: 0; } }
+@keyframes icoBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+@media (prefers-reduced-motion: reduce) { .svc-ico .dr, .svc-ico .bob, .pill .dr, .fp .dr { animation: none; } }
+.svc h3 { margin: 0; font-size: clamp(21px, 1.9vw, 25px); font-weight: 500; letter-spacing: -.02em; }
+.svc p { margin: 12px 0 0; color: var(--muted); font-size: 17px; line-height: 1.45; max-width: 460px; }
+.ticker { margin-top: 26px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.ticker-row { display: flex; gap: 8px; width: max-content; animation: tick 18s linear infinite; }
+.svc:nth-child(2) .ticker-row { animation-duration: 21s; } .svc:nth-child(3) .ticker-row { animation-duration: 19s; } .svc:nth-child(4) .ticker-row { animation-duration: 22s; }
+.tag { flex: none; padding: 7px 12px; border-radius: 6px; background: #141414; font-size: 13px; font-weight: 500; white-space: nowrap; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ===================== SELECTED WORK ===================== */
+/* 3 tracks: big card = 2 tracks (727px), small = 1 track (379px), alternating per row like Framer */
+.work-grid { margin-top: 44px; display: grid; grid-template-columns: 379fr 338fr 379fr; gap: 10px; text-align: left; }
+.wk { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 627px; border-radius: 14px; overflow: hidden; background: var(--card); border: 1px solid var(--line); isolation: isolate; }
+.wk.big { grid-column: span 2; } .wk.small { grid-column: span 1; }
+.wk video, .wk .ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1s var(--ease); }
+.wk .ph { background: #0B0B0B; }
+.wk:hover video { transform: scale(1.03); }
+.wk::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,10,0) 45%, rgba(10,10,10,.85) 78%, #0A0A0A 100%); }
+.wk .play { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 50%; background: #fff; color: #000; display: grid; place-items: center;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, .35); transition: opacity .4s, transform .3s var(--ease); }
+.wk.playing .play { opacity: 0; transform: translate(-50%, -50%) scale(.8); }
+.wk-body { padding: 0 22px 22px; }
+/* "Created by Sameer Saifi" badge, same look as the one in the Ladakh video */
+/* "Created by Sameer Saifi" badge: top-center with a small gap, coloured to match each website */
+.made-by { position: absolute; z-index: 1; top: 14px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px; border-radius: 999px;
+  font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 4px 14px rgba(0, 0, 0, .3); }
+.made-by b { font-weight: 700; }
+/* NJ Sports: dark navy pill, cyan dot, mono type */
+.made-by.nj { background: rgba(10, 22, 40, .88); color: #8FB8C9; border: 1px solid rgba(34, 211, 238, .35); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; }
+.made-by.nj b { color: #E9F7FB; }
+.made-by.nj::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #22D3EE; box-shadow: 0 0 8px #22D3EE; }
+/* VEX: frosted white glass like its nav bar */
+.made-by.vex { top: 58px; /* sits just under the VEX video's own nav bar */ background: rgba(255, 255, 255, .16); color: rgba(255, 255, 255, .8); border: 1px solid rgba(255, 255, 255, .3); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.made-by.vex b { color: #fff; }
+.wk h3 { margin: 0 0 16px; font-size: clamp(21px, 1.9vw, 25px); font-weight: 500; letter-spacing: -.02em; }
+.pills { display: flex; gap: 8px; overflow: hidden; }
+.pill { flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; background: #1A1A1A; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.pill svg { width: 15px; height: 15px; }
+.more { margin-top: 44px; }
+
+/* ===================== LOGOS ===================== */
+.logos { padding-top: 120px; }
+.logos p { margin: 0 0 32px; color: var(--muted); font-size: 17px; text-align: center; }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); max-width: 1000px; margin-inline: auto; }
+.marquee-row { display: flex; align-items: center; gap: 60px; width: max-content; animation: tick 26s linear infinite; }
+.marquee img { height: 30px; width: auto; }
+
+/* ===================== HIGHLIGHT ===================== */
+.highlight { position: relative; display: grid; place-items: center; min-height: 600px; margin-top: 60px; text-align: center; }
+.highlight .mark { width: 70px; height: 70px; margin: 0 auto 26px; border-radius: 16px; background: #1B1B1B; border: 1px solid #2A2A2A; display: grid; place-items: center; }
+.highlight .mark img { width: 40px; }
+.highlight .title { max-width: 460px; margin-inline: auto; font-size: clamp(30px, 3.6vw, 40px); }
+.fp { position: absolute; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; background: #1A1A1A; font-size: 16px; font-weight: 600; white-space: nowrap;
+  animation: bob 6s ease-in-out infinite; will-change: translate; }
+.fp svg { width: 20px; height: 20px; }
+.fp1 { left: 14%; top: 4%; rotate: -14deg; }
+.fp2 { right: 12%; top: 2%; rotate: 15deg; animation-delay: -1.5s; }
+.fp3 { left: 14%; bottom: 10%; rotate: 9deg; animation-delay: -3s; }
+.fp4 { right: 14%; bottom: 14%; rotate: -8deg; animation-delay: -4.5s; }
+@keyframes bob { 50% { translate: 0 -12px; } }
+
+/* ===================== ABOUT ===================== */
+.about { display: grid; grid-template-columns: 407px minmax(0, 1fr); gap: 24px; }
+.about-img { border-radius: 12px; overflow: hidden; background: var(--card); border: 1px solid var(--line); }
+.about-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-card { padding: 32px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); display: flex; flex-direction: column; }
+.about-card h2 { margin: 120px 0 0; font-size: clamp(30px, 3vw, 36px); font-weight: 500; line-height: 1.25; letter-spacing: -.03em; }
+.about-card h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--soft); }
+.about-card p { margin: 22px 0 0; color: var(--muted); font-size: 17px; line-height: 1.45; }
+.about-card p strong { color: #fff; font-weight: 600; }
+.about-card .btn { align-self: flex-start; margin-top: 30px; }
+.about-card hr { width: 100%; border: 0; height: 1px; margin: 30px 0 24px; background: linear-gradient(90deg, var(--line-2), transparent); }
+.socials { display: flex; gap: 10px; }
+.socials a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--soft); transition: color .2s, border-color .2s; }
+.socials a:hover { color: #fff; border-color: #fff; }
+
+/* ===================== PRICING ===================== */
+.plans { margin-top: 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: left; }
+.plan { padding: 24px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
+.plan-top { display: flex; justify-content: space-between; align-items: center; }
+.plan-name { padding: 8px 16px; border-radius: 999px; background: #1C1C1C; font-size: 14px; font-weight: 500; }
+.spots { display: inline-flex; align-items: center; gap: 8px; color: var(--soft); font-size: 15px; }
+.price { margin-top: 26px; display: flex; align-items: flex-start; gap: 8px; font-size: clamp(40px, 3.6vw, 48px); font-weight: 500; letter-spacing: -.03em; line-height: 1; }
+.price small { font-size: 15px; font-weight: 500; margin-top: 8px; color: var(--soft); }
+.per { margin-top: 12px; color: var(--muted); font-size: 18px; }
+.plan .btn { width: 100%; margin-top: 26px; min-height: 46px; font-size: 16px; }
+.plan ul { list-style: none; margin: 32px 0 0; padding: 32px 0 0; border-top: 1px solid var(--line); display: grid; gap: 14px; }
+.plan li { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 15px; }
+.plan li svg { flex: none; }
+
+/* ===================== FAQ ===================== */
+.faq { max-width: 698px; margin: 56px auto 0; display: grid; gap: 12px; text-align: left; }
+.faq details { border-radius: 10px; background: var(--card); border: 1px solid var(--line); }
+.faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 18px; font-size: 17px; font-weight: 500; cursor: pointer; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary i { flex: none; width: 34px; height: 34px; border-radius: 50%; background: #000; border: 1px solid var(--line); display: grid; place-items: center; transition: transform .35s var(--ease); }
+.faq details[open] summary i { transform: rotate(180deg); }
+.faq .ans { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--ease); }
+.faq details[open] .ans { grid-template-rows: 1fr; }
+.faq .ans > div { overflow: hidden; }
+.faq .ans p { margin: 0; padding: 0 18px 18px; color: var(--muted); font-size: 16px; }
+
+/* ===================== CTA + FOOTER ===================== */
+.divider { height: 1px; margin-top: 100px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); }
+.cta { padding-block: 100px 70px; text-align: center; }
+.cta .title { font-size: clamp(38px, 4.2vw, 50px); }
+.cta .sub { max-width: 520px; font-size: 19px; }
+.cta .btn { margin-top: 36px; min-height: 46px; font-size: 16px; }
+.cta-socials { display: flex; justify-content: center; align-items: center; gap: 0; margin-top: 30px; }
+.cta-socials a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--soft); transition: color .2s, border-color .2s; }
+.cta-socials a:hover { color: #fff; border-color: #fff; }
+.cta-socials .sep { width: 1px; height: 38px; margin-inline: 25px; background: var(--line-2); }
+.mail { display: inline-block; margin-top: 30px; font-size: 20px; font-weight: 500; border-bottom: 1px solid #fff; padding-bottom: 2px; }
+footer { background: #0B0B0B; }
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 22px; color: var(--muted); font-size: 15px; }
+.credit { display: inline-flex; align-items: center; gap: 10px; }
+.credit b { padding: 8px 14px; border-radius: 999px; background: #1C1C1C; color: #fff; font-weight: 500; }
+
+/* ===================== TABLET (Framer: 810–1199px, 726px column) ===================== */
+@media (max-width: 1199px) {
+  .wrap { max-width: 810px; }
+  #selected-work { max-width: none; }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wk.big, .wk.small { grid-column: auto; min-height: 568px; }
+  .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about { grid-template-columns: 1fr; }
+  .about-img { aspect-ratio: 726 / 848; order: 2; }
+  .about-card { min-height: 672px; }
+  .fp1, .fp3 { left: 4%; } .fp2, .fp4 { right: 4%; }
+}
+
+/* ===================== PHONE (Framer: below 810px) ===================== */
+@media (max-width: 809px) {
+  .nav-links .nav-pill { display: none; }
+  .burger { display: grid; }
+  .nav .btn { margin-left: 0; }
+  .nav-in { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .nav-links { justify-self: center; }
+  .burger { justify-self: end; }
+  .services { grid-template-columns: 1fr; }
+  .work-grid { grid-template-columns: 1fr; }
+  .plans { grid-template-columns: 1fr; }
+  .about-img { aspect-ratio: 342 / 445; }
+  .about-card { min-height: 0; }
+  .wrap { padding-inline: 24px; }
+  /* Phone hero: full-screen photo, header floats on it, name sits at the bottom */
+  .hero { height: 100svh; min-height: 620px; max-height: 860px; }
+  .hero-img { object-position: 50% 0%; }
+  .hero-frame::after { background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 50%, rgba(0,0,0,.75) 78%, #000 100%); }
+  .hero-copy { top: auto; bottom: 28px; padding-inline: 24px; }
+  .role { font-size: 15px; line-height: 1.85; }
+  .name { margin-top: 18px; font-size: clamp(46px, 13.5vw, 60px); }
+  /* Stats stay one row of four, just smaller */
+  .wrap:has(> .stats) { padding-inline: 8px; }
+  .stats { padding-block: 32px; }
+  .stat { padding: 6px 4px; }
+  .stat b { font-size: clamp(20px, 6vw, 32px); }
+  .stat span { margin-top: 4px; font-size: clamp(10px, 2.8vw, 14px); line-height: 1.3; }
+  .featured { padding-top: 90px; }
+  .title { font-size: 34px; }
+  .video-card { margin-top: 36px; }
+  .play-btn { gap: 10px; font-size: 20px; }
+  .section { padding-top: 110px; }
+  .services { margin-top: 44px; }
+  .svc { padding: 20px; min-height: 348px; gap: 70px; }
+  .svc p { font-size: 15px; }
+  .wk-body { padding: 0 16px 18px; }
+  .fp { position: static; display: inline-flex; animation: none; margin: 8px 4px 0; font-size: 14px; padding: 10px 14px; }
+  .fp1 { rotate: -6deg; } .fp2 { rotate: 6deg; } .fp3 { rotate: 4deg; } .fp4 { rotate: -4deg; }
+  .highlight { min-height: 0; padding-block: 90px 20px; display: block; }
+  .floats { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; }
+  .about-card { padding: 22px; }
+  .about-card h2 { margin-top: 90px; font-size: 30px; }
+  .about-card p { font-size: 15px; }
+  .plan { padding: 20px; }
+  .faq summary { font-size: 15px; padding: 12px 14px; }
+  .cta .sub { font-size: 16px; }
+  .mail { font-size: 17px; }
+  .foot { flex-direction: column; text-align: center; gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .role span, .name > span, .hero-img { opacity: 1; transform: none; filter: none; }
+  .js .rv { opacity: 1; transform: none; filter: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Sameer Saifi, back to top"><img src="assets/logo.svg" alt="" width="26" height="24"></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="nav-pill" href="#selected-work">Work</a>
+      <a class="nav-pill" href="#services">Services</a>
+      <a class="nav-pill" href="#pricing">Pricing</a>
+      <a class="btn btn-white" data-book href="#contact">Book a call</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#selected-work">Work</a><a href="#services">Services</a><a href="#pricing">Pricing</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-frame">
+    <img class="hero-img" src="assets/hero.webp" alt="Sameer Saifi" width="1672" height="941" fetchpriority="high">
+    <div class="hero-copy">
+      <p class="role"><span>Web Developer &amp;</span><span>CRO Expert</span></p>
+      <h1 class="name"><span class="first">Sameer</span><span class="last">Saifi</span></h1>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS (edit numbers here) ===================== -->
+<div class="wrap">
+  <div class="stats">
+    <div class="stat rv"><b>24K</b><span>Total Views Generated</span></div>
+    <div class="stat rv d1"><b>250+</b><span>Website Delivered</span></div>
+    <div class="stat rv d2"><b>1M+</b><span>Revenue Driven for Clients</span></div>
+    <div class="stat rv d3"><b>98%</b><span>Client Retention Rate</span></div>
+  </div>
+</div>
+
+<!-- ===================== SELECTED WORK ===================== -->
+<section class="wrap section center" id="selected-work">
+  <span class="chip rv">Work</span>
+  <h2 class="title rv d1">Selected <span class="dim">Work.</span></h2>
+  <p class="sub rv d2" style="max-width:360px">A collection of 3d Websites created for creators, brands, and digital businesses.</p>
+  <a class="btn btn-white rv d3" data-book href="#contact" style="margin-top:22px">Work with me</a>
+
+  <div class="work-grid">
+    <a class="wk big rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/india/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/L98vKw9bYqlqnZLyqu3aim6IGPQ.mp4"></video>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>Ladakh: Parallax Story</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Scroll Animation</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-5"/></svg>Speed-Optimised</span></div></div>
+    </a>
+    <a class="wk small rv d1" href="https://nj-info.in/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/IvtNM9fU2HT1oUzbuaPDevi6ic.mp4"></video>
+      <span class="made-by nj">Created by <b>Sameer Saifi</b></span>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>NJ Sports</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Cricket &amp; Football Community</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Telegram Landing Page</span></div></div>
+    </a>
+    <a class="wk small rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/vex/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/wxJxeKsKli9l46O5IMfxS9v4io.mp4"></video>
+      <span class="made-by vex">Created by <b>Sameer Saifi</b></span>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>VEX</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>Video Hero</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg>Liquid Glass UI</span></div></div>
+    </a>
+    <a class="wk big rv d1" href="https://sameersaifi07.github.io/Website-I-ve-Built/planet-jumping/" target="_blank" rel="noopener">
+      <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/wgikpd2ivpY3BebY13qUda6JrI.mp4"></video>
+      <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+      <div class="wk-body"><h3>Planet Jumping</h3>
+        <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M3 15c-1.5 2.5 1 4 5 2.8M21 9c1.5-2.5-1-4-5-2.8"/></svg>3D Space Portal</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Interactive Animation</span></div></div>
+    </a>
+  </div>
+  <a class="btn btn-dark more rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/" target="_blank" rel="noopener">View all projects</a>
+</section>
+
+<!-- ===================== STORES I'VE BUILT ===================== -->
+<section class="wrap featured" id="stores">
+  <span class="chip rv">Show Work</span>
+  <h2 class="title rv d1">Stores I've Built</h2>
+  <div class="video-card rv" id="featured">
+    <video id="featuredVideo" src="https://framerusercontent.com/assets/XCMFsh16D6JzA3mfbOmLlqwTXA.mp4" poster="assets/featured-poster.webp" playsinline preload="none"></video>
+    <span class="shade"></span>
+    <button class="play-btn" type="button" id="featuredPlay"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></i>View Project</button>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="wrap section center" id="services">
+  <span class="chip rv">Services</span>
+  <h2 class="title rv d1">What <span class="dim">I Do.</span></h2>
+  <p class="sub rv d2">Creative website services designed for dropshippers, brands, and businesses looking to stand out online.</p>
+  <div class="services">
+    <article class="svc rv">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#d6d6d6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="bob"><path class="dr" pathLength="1" d="M5.5 8h13l-1.1 13H6.6L5.5 8Z"/><path class="dr" pathLength="1" style="--d:.15s" d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/><path class="dr" pathLength="1" style="--d:.3s" d="M9.5 14.5h5"/></g></svg></span>
+      <div><h3>Shopify Development</h3><p>Your store is your best closer. I build fast, premium stores that move every visitor toward one thing: checkout.</p>
+      <div class="ticker"><div class="ticker-row" data-tags="Custom storefronts|High-converting layouts|Custom sections|Mobile-first"></div></div></div>
+    </article>
+    <article class="svc rv d1">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#d6d6d6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M8.5 20.5h7M12 16.5v4"/><path class="dr" pathLength="1" d="M6 7.5h5.5v3.5H6z"/><path class="dr" pathLength="1" style="--d:.15s" d="M6 13.5h5.5"/><path class="dr" pathLength="1" style="--d:.3s" d="M14 7.5h4M14 10.5h4M14 13.5h2.5"/></svg></span>
+      <div><h3>Website Design &amp; Development</h3><p>First impressions sell. I design clean, responsive websites that make your brand look trusted at first scroll.</p>
+      <div class="ticker"><div class="ticker-row" data-tags="Responsive design|Dynamic transitions|Brand-led visuals|Clear navigation"></div></div></div>
+    </article>
+    <article class="svc rv">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#d6d6d6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5h17"/><path class="dr" pathLength="1" d="M3.5 17 9 11.5l4 4L20.5 8"/><path class="dr" pathLength="1" style="--d:.35s" d="M15 8h5.5v5.5"/></svg></span>
+      <div><h3>Conversion Optimisation</h3><p>Traffic isn't the problem. I fix the friction in your product pages and checkout so more visitors become buyers.</p>
+      <div class="ticker"><div class="ticker-row" data-tags="Product pages|Checkout flow|CTA optimisation|UX audits"></div></div></div>
+    </article>
+    <article class="svc rv d1">
+      <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#d6d6d6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path class="dr" pathLength="1" d="M3.5 9.5h17"/><path class="dr" pathLength="1" style="--d:.15s" d="M10 9.5v11"/><path class="dr" pathLength="1" style="--d:.3s" d="M13 13h4.5M13 16.5h3"/></svg></span>
+      <div><h3>Custom Website Templates</h3><p>Launch like a premium brand. My original templates are built to look sharp, load fast, and sell from day one.</p>
+      <div class="ticker"><div class="ticker-row" data-tags="Original designs|Easy to edit|Reusable sections|Fast launch"></div></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== BRANDS ===================== -->
+<section class="logos">
+  <p class="rv">Worked With Indian Brands like</p>
+  <div class="marquee rv"><div class="marquee-row" id="logoRow">
+    <img src="assets/clients/client-1.webp" alt="Adsalign" height="30"><img src="assets/clients/client-2.webp" alt="TapnTrusts" height="30"><img src="assets/clients/client-3.webp" alt="saekos." height="30"><img src="assets/clients/client-4.webp" alt="BabyNinja" height="30"><img src="assets/clients/client-5.webp" alt="NJ Sports" height="30"><img src="assets/clients/client-6.webp" alt="Lumzo" height="30">
+  </div></div>
+</section>
+
+<!-- ===================== HIGHLIGHT ===================== -->
+<section class="wrap highlight">
+  <div class="rv">
+    <div class="mark"><img src="assets/logo.svg" alt="" width="40" height="36"></div>
+    <h2 class="title">From dropshippers to brands, <span class="dim">stores built to sell.</span></h2>
+  </div>
+  <div class="floats">
+    <span class="fp fp1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>250+ Stores Built</span>
+    <span class="fp fp2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 10l5-3v10l-5-3"/><rect x="2" y="6" width="13" height="12" rx="2"/></svg>85+ Avg. Conversion Lift</span>
+    <span class="fp fp3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l-2 4c4 2 6 6 6 9a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5c0-3 2-7 6-9z"/><path d="M12 11v6M10 13h3a1 1 0 0 1 0 2h-2"/></svg>1M+ Revenue Driven for Clients</span>
+    <span class="fp fp4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>250+ Happy Clients</span>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="wrap section" id="about">
+  <div class="about">
+    <div class="about-img rv"><img src="assets/about.webp" alt="Sameer Saifi" width="700" height="1167" loading="lazy"></div>
+    <div class="about-card rv d1">
+      <span class="chip" style="align-self:flex-start">About Me</span>
+      <h2>I Don't Just Build Stores.<br>I <em>Design</em> Sales</h2>
+      <p>I'm a Shopify developer obsessed with clean design, smooth shopping and the small details that turn browsers into buyers. With <strong>4+ years</strong> of building online stores, from custom sections to complete store builds, I create stores that look premium, load fast, and sell.</p>
+      <p>Every project starts with your customers. I listen first, build second. The result? A store that feels like your brand, works beautifully on mobile, and keeps visitors moving toward checkout.</p>
+      <a class="btn btn-white" data-book href="#contact">Book A 15-min Call</a>
+      <hr>
+      <div class="socials" data-socials></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="wrap section center" id="pricing">
+  <span class="chip rv">Pricing</span>
+  <h2 class="title rv d1">Simple, Honest<br><span class="dim">Packages</span></h2>
+  <div class="plans">
+    <div class="plan rv">
+      <div class="plan-top"><span class="plan-name">Starter</span></div>
+      <div class="price"><small>₹</small>9,999</div><div class="per">One-time</div>
+      <a class="btn btn-dark" data-book href="#contact">Get Started</a>
+      <ul data-checks>
+        <li>Shopify store setup</li><li>Premium theme customisation</li><li>Up to 5 pages</li><li>Mobile-optimised design</li><li>Razorpay / UPI &amp; shipping setup</li><li>7-day delivery</li>
+      </ul>
+    </div>
+    <div class="plan rv d1">
+      <div class="plan-top"><span class="plan-name">Growth</span><span class="spots"><i class="gdot"></i>2 Spots</span></div>
+      <div class="price"><small>₹</small>19,999</div><div class="per">One-time</div>
+      <a class="btn btn-white" data-book href="#contact">Get Started</a>
+      <ul data-checks>
+        <li>Custom-designed Shopify store</li><li>Up to 10 pages</li><li>Custom sections you can edit</li><li>High-converting product pages</li><li>Speed optimisation</li><li>2 rounds of revisions</li>
+      </ul>
+    </div>
+    <div class="plan rv d2">
+      <div class="plan-top"><span class="plan-name">Premium</span></div>
+      <div class="price"><small>₹</small>29,999</div><div class="per">One-time</div>
+      <a class="btn btn-dark" data-book href="#contact">Get Started</a>
+      <ul data-checks>
+        <li>Fully custom store design</li><li>Unlimited pages &amp; sections</li><li>Conversion (CRO) audit + fixes</li><li>Checkout &amp; cart optimisation</li><li>Speed + SEO setup</li><li>30 days of post-launch support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="wrap section center" id="faq">
+  <span class="chip rv">FAQ</span>
+  <h2 class="title rv d1">GOT <span class="dim">QUESTIONS.</span></h2>
+  <div class="faq">
+    <details class="rv"><summary>What kind of Shopify work do you do?<i></i></summary><div class="ans"><div><p>Everything from new store setups to fully custom builds: theme customisation, custom sections, product page redesigns and conversion fixes. Whether you're a new dropshipper or an established brand, I'll build a store that looks premium and sells.</p></div></div></details>
+    <details class="rv"><summary>What do I need to get started?<i></i></summary><div class="ans"><div><p>Just your Shopify login (collaborator access), logo, product details and a few stores you love. Don't have everything ready? No problem. We'll figure it out together on a quick 15-minute call.</p></div></div></details>
+    <details class="rv"><summary>Can you redesign my existing Shopify store?<i></i></summary><div class="ans"><div><p>Yes. I can refresh your current theme or rebuild it completely, without losing your products, orders or customer data.</p></div></div></details>
+    <details class="rv"><summary>How many revisions do I get?<i></i></summary><div class="ans"><div><p>Starter includes 1 round, Growth includes 2, and Premium continues with 30 days of post-launch support. I share progress at every stage, so there are no surprises at the end.</p></div></div></details>
+    <details class="rv"><summary>How long does it take to build my store?<i></i></summary><div class="ans"><div><p>Starter stores are ready in 7 days. Growth and Premium projects usually take 2–4 weeks, depending on pages and custom features. You'll get a clear timeline before we begin.</p></div></div></details>
+    <details class="rv"><summary>Who owns the store after it's built?<i></i></summary><div class="ans"><div><p>You do, 100%. The store, design, content and custom sections are fully yours. I build inside your Shopify account, and once the final payment is made, everything is handed over completely.</p></div></div></details>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="wrap cta" id="contact">
+  <span class="chip rv"><i class="gdot"></i>Available for New Projects</span>
+  <h2 class="title rv d1">Your Store Deserves<br><span class="dim">Better Sales.</span></h2>
+  <p class="sub rv d2">From quick Shopify setups<br>to fully custom brand stores,<br>let's build a store your customers love to buy from.</p>
+  <a class="btn btn-white rv d3" data-book href="#contact">Start Your Project</a>
+  <div class="cta-socials rv" data-socials data-sep></div>
+  <a class="mail rv" id="mail" href="#"></a>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year">2026</span> Sameer Saifi. All rights reserved</span>
+    <span class="credit">Created by <b>Sameer Saifi</b></span>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   EDIT YOUR DETAILS HERE
+   ===================================================================== */
+var CONFIG = {
+  bookingLink: 'https://cal.com/sameer-saifi-9ci6kx',   // all "Book a call", "Get Started" and "Start Your Project" buttons
+  email: 'samsaifi2526@gmail.com',
+  x: 'https://x.com/',                  // replace with your X profile link
+  tiktok: 'https://www.tiktok.com/',     // replace with your TikTok profile link
+  instagram: 'https://www.instagram.com/' // replace with your Instagram profile link
+};
+
+(function () {
+  document.documentElement.classList.add('js');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Buttons → booking link
+  document.querySelectorAll('[data-book]').forEach(function (a) { a.href = CONFIG.bookingLink; a.target = '_blank'; a.rel = 'noopener'; });
+
+  // Email
+  var mail = document.getElementById('mail');
+  mail.textContent = CONFIG.email; mail.href = 'mailto:' + CONFIG.email;
+
+  // Social icons
+  var icons = {
+    x: '<path fill="currentColor" stroke="none" d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7.1-8.1L2.2 3h6.2l4.3 5.7zm-1 16.2h1.7L7.3 4.7H5.5z"/>',
+    tiktok: '<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.5 2.5 4.5 5 4.5"/>',
+    instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/>'
+  };
+  document.querySelectorAll('[data-socials]').forEach(function (el) {
+    var sep = el.hasAttribute('data-sep');
+    el.innerHTML = Object.keys(icons).filter(function (k) { return CONFIG[k]; }).map(function (k, i) {
+      return (sep && i ? '<span class="sep"></span>' : '') + '<a href="' + CONFIG[k] + '" target="_blank" rel="noopener" aria-label="' + k + '">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + icons[k] + '</svg></a>';
+    }).join('');
+  });
+
+  // Pricing check icons
+  var check = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C8C8C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>';
+  document.querySelectorAll('[data-checks] li').forEach(function (li) { li.insertAdjacentHTML('afterbegin', check); });
+
+  // FAQ chevrons
+  document.querySelectorAll('.faq summary i').forEach(function (i) {
+    i.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  });
+
+  // Service tag tickers (tags repeated so the loop is seamless)
+  document.querySelectorAll('[data-tags]').forEach(function (row) {
+    var tags = row.dataset.tags.split('|').map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('');
+    row.innerHTML = tags + tags + tags + tags;
+  });
+  // Logo marquee: duplicate once for a seamless loop
+  var logoRow = document.getElementById('logoRow');
+  logoRow.innerHTML += logoRow.innerHTML.replace(/alt="[^"]*"/g, 'alt=""');
+
+  // Nav background + mobile menu
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 10); };
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  var burger = document.getElementById('burger');
+  function setMenu(open) { document.body.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', String(open)); }
+  burger.addEventListener('click', function () { setMenu(!document.body.classList.contains('menu-open')); });
+  document.querySelectorAll('#mobileMenu a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+  // Featured video: plays with sound and controls on click
+  var fv = document.getElementById('featuredVideo'), fcard = document.getElementById('featured');
+  document.getElementById('featuredPlay').addEventListener('click', function () {
+    fv.controls = true; fv.preload = 'auto'; fcard.classList.add('playing');
+    var p = fv.play(); if (p && p.catch) p.catch(function () {});
+  });
+
+  // Project-card and floating-badge icons: every line gets the same draw loop as the service icons
+  document.querySelectorAll('.wk .pill svg, .fp svg').forEach(function (svg) {
+    svg.querySelectorAll('path, circle, rect, line, polyline').forEach(function (el, i) {
+      el.setAttribute('pathLength', '1'); el.classList.add('dr'); el.style.setProperty('--d', (i * .15) + 's');
+    });
+  });
+
+  var hasIO = 'IntersectionObserver' in window;
+  // Scroll reveals
+  var rvs = document.querySelectorAll('.rv');
+  if (hasIO) {
+    var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }); }, { threshold: .15, rootMargin: '0px 0px -60px 0px' });
+    rvs.forEach(function (el) { rio.observe(el); });
+  } else rvs.forEach(function (el) { el.classList.add('in'); });
+
+  // Work videos: load + play silently only while on screen
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.wk video').forEach(function (v) {
+    var card = v.closest('.wk');
+    v.addEventListener('playing', function () { card.classList.add('playing'); });
+    v.addEventListener('pause', function () { card.classList.remove('playing'); });
+    if (!hasIO || reduce) return;
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else if (v.src) v.pause();
+      });
+    }, { threshold: .25 }).observe(v);
+  });
+})();
+</script>
+</body>
+</html>
