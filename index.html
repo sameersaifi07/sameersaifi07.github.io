@@ -75,20 +75,30 @@ button { font: inherit; color: inherit; }
 .menu-open .burger span { background: transparent; }
 .menu-open .burger span::before { transform: translateY(7px) rotate(45deg); }
 .menu-open .burger span::after { transform: translateY(-7px) rotate(-45deg); }
-.mobile-menu { position: fixed; inset: 76px 0 auto; z-index: 49; display: grid; gap: 4px; padding: 10px 24px 24px; background: rgba(0, 0, 0, .96);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); opacity: 0; transform: translateY(-10px); visibility: hidden;
-  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s; }
-.mobile-menu a { padding: 12px 0; font-size: 22px; font-weight: 500; border-bottom: 1px solid var(--line); }
-.menu-open .mobile-menu { opacity: 1; transform: none; visibility: visible; }
+/* Menu: full-screen black panel under a solid header; links slide in one by one */
+.menu-open, html:has(body.menu-open) { overflow: hidden; }
+.menu-open .nav { background: #000; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.mobile-menu { position: fixed; top: 76px; left: 0; right: 0; height: calc(100svh - 76px); z-index: 49; display: flex; flex-direction: column; padding: 8px 24px 32px; background: #000;
+  border-top: 1px solid var(--line); opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s; overflow-y: auto; }
+.mobile-menu a { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 30px; font-weight: 500; letter-spacing: -.02em;
+  border-bottom: 1px solid var(--line); opacity: 0; transform: translateY(14px); transition: opacity .45s var(--ease), transform .45s var(--ease), color .2s; }
+.mobile-menu a::after { content: "→"; font-size: 22px; color: var(--muted); }
+.mobile-menu a:hover { color: var(--soft); }
+.menu-open .mobile-menu { opacity: 1; visibility: visible; }
+.menu-open .mobile-menu a { opacity: 1; transform: none; }
+.menu-open .mobile-menu a:nth-child(2) { transition-delay: .06s; } .menu-open .mobile-menu a:nth-child(3) { transition-delay: .12s; }
 
 /* ===================== HERO ===================== */
-.hero { position: relative; height: 100svh; min-height: 640px; max-height: 1000px; background: radial-gradient(120% 80% at 50% 0%, #3E4142 0%, #1A1B1C 45%, #000 80%); overflow: hidden; }
-.hero-frame { position: relative; height: 100%; max-width: 1116px; margin-inline: auto; overflow: hidden; }
-.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; animation: hero-zoom 1.8s var(--ease) both; }
+/* Full-width photo behind a transparent header */
+.hero { position: relative; height: 100svh; min-height: 640px; max-height: 1000px; background: #0B0B0B; overflow: hidden; }
+.hero-frame { position: relative; height: 100%; overflow: hidden; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; animation: hero-zoom 1.8s var(--ease) both; }
 @keyframes hero-zoom { from { transform: scale(1.06); opacity: 0; } to { transform: none; opacity: 1; } }
-.hero-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.55) 75%, #000 100%),
-  linear-gradient(90deg, rgba(0,0,0,.35), rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.35)); pointer-events: none; }
-.hero-copy { position: absolute; z-index: 2; left: 24px; right: 24px; top: 21%; }
+.hero-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,0) 55%, rgba(0,0,0,.6) 80%, #000 100%),
+    linear-gradient(90deg, rgba(0,0,0,.5), rgba(0,0,0,0) 40%); }
+/* Text lines up with the logo: same max width and side padding as .wrap */
+.hero-copy { position: absolute; z-index: 2; left: 0; right: 0; top: 21%; margin-inline: auto; max-width: var(--wrap); padding-inline: 42px; }
 .role { margin: 0; font-size: clamp(20px, 2.1vw, 30px); font-weight: 500; line-height: 1.8; letter-spacing: -.01em; }
 .role span { display: block; opacity: 0; transform: translateY(16px); animation: rise .9s var(--ease) forwards; }
 .role span:nth-child(2) { animation-delay: .12s; }
@@ -280,11 +290,11 @@ footer { background: #0B0B0B; }
   .about-img { aspect-ratio: 342 / 445; }
   .about-card { min-height: 0; }
   .wrap { padding-inline: 24px; }
-  .hero { height: auto; min-height: 0; max-height: none; background: #000; padding-top: 76px; }
-  .hero-frame { height: auto; aspect-ratio: 390 / 240; background: radial-gradient(120% 90% at 50% 10%, #4A4D4E, #1B1C1D 60%, #0C0C0C); }
-  .hero-img { object-position: 62% 18%; }
-  .hero-frame::after { background: linear-gradient(90deg, rgba(0,0,0,.45), rgba(0,0,0,0) 60%), linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.6)); }
-  .hero-copy { top: 14%; left: 24px; right: 24px; }
+  /* Phone hero: full-screen photo, header floats on it, name sits at the bottom */
+  .hero { height: 100svh; min-height: 620px; max-height: 860px; }
+  .hero-img { object-position: 50% 0%; }
+  .hero-frame::after { background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 50%, rgba(0,0,0,.75) 78%, #000 100%); }
+  .hero-copy { top: auto; bottom: 28px; padding-inline: 24px; }
   .role { font-size: 15px; line-height: 1.85; }
   .name { margin-top: 18px; font-size: clamp(46px, 13.5vw, 60px); }
   /* Stats stay one row of four, just smaller */
@@ -348,8 +358,8 @@ footer { background: #0B0B0B; }
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="hero-frame">
-    <img class="hero-img" src="assets/hero.webp" alt="Sameer Saifi" width="1523" height="1033" fetchpriority="high">
-    <div class="hero-copy wrap" style="padding:0">
+    <img class="hero-img" src="assets/hero.webp" alt="Sameer Saifi" width="1672" height="941" fetchpriority="high">
+    <div class="hero-copy">
       <p class="role"><span>Web Developer &amp;</span><span>CRO Expert</span></p>
       <h1 class="name"><span class="first">Sameer</span><span class="last">Saifi</span></h1>
     </div>
