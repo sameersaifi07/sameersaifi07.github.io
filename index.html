@@ -97,8 +97,10 @@ button { font: inherit; color: inherit; }
 /* Only a soft blend into the black page at the very bottom edge */
 .hero-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 90%, rgba(0,0,0,.55) 100%); }
 /* Text lines up with the logo: same max width and side padding as .wrap */
-.hero-copy { position: absolute; z-index: 2; left: 0; right: 0; bottom: 7%; margin-inline: auto; max-width: var(--wrap); padding-inline: 42px; text-align: center; }
-.hero-copy .name { justify-content: center; }
+/* Role sits top-left (lined up with the logo); the name sits in the exact middle of the photo */
+.hero-copy { position: absolute; z-index: 2; inset: 0; margin-inline: auto; max-width: var(--wrap); padding-inline: 42px; }
+.hero-copy .role { position: absolute; top: 21%; left: 42px; }
+.hero-copy .name { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); margin: 0; justify-content: center; }
 .role { margin: 0; font-size: clamp(20px, 2.1vw, 30px); font-weight: 500; line-height: 1.8; letter-spacing: -.01em; }
 .role span { display: block; opacity: 0; transform: translateY(16px); animation: rise .9s var(--ease) forwards; }
 .role span:nth-child(2) { animation-delay: .12s; }
@@ -298,6 +300,8 @@ footer { background: #0B0B0B; }
   .hero-frame::after { display: none; }
   .hero-img { position: relative; height: auto; }
   .hero-copy { position: static; padding: 22px 24px 28px; }
+  .hero-copy .role, .hero-copy .name { position: static; transform: none; }
+  .hero-copy .name { margin-top: 18px; }
   .role { font-size: 15px; line-height: 1.85; }
   .name { margin-top: 18px; font-size: clamp(46px, 13.5vw, 60px); }
   /* Stats stay one row of four, just smaller */
