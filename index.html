@@ -97,7 +97,8 @@ button { font: inherit; color: inherit; }
 /* Only a soft blend into the black page at the very bottom edge */
 .hero-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 90%, rgba(0,0,0,.55) 100%); }
 /* Text lines up with the logo: same max width and side padding as .wrap */
-.hero-copy { position: absolute; z-index: 2; left: 0; right: 0; top: 21%; margin-inline: auto; max-width: var(--wrap); padding-inline: 42px; }
+.hero-copy { position: absolute; z-index: 2; left: 0; right: 0; bottom: 7%; margin-inline: auto; max-width: var(--wrap); padding-inline: 42px; text-align: center; }
+.hero-copy .name { justify-content: center; }
 .role { margin: 0; font-size: clamp(20px, 2.1vw, 30px); font-weight: 500; line-height: 1.8; letter-spacing: -.01em; }
 .role span { display: block; opacity: 0; transform: translateY(16px); animation: rise .9s var(--ease) forwards; }
 .role span:nth-child(2) { animation-delay: .12s; }
