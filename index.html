@@ -298,7 +298,9 @@ footer { background: #0B0B0B; }
   /* Phone hero: full photo under the header, name just below the photo */
   .hero-frame { aspect-ratio: auto; }
   .hero-frame::after { display: none; }
-  .hero-img { position: relative; height: auto; }
+  /* Phone: taller crop so the person fills the screen; empty background at the sides is trimmed */
+  .hero-img { position: relative; height: auto; aspect-ratio: 5 / 7; object-fit: cover; object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent); mask-image: linear-gradient(180deg, #000 88%, transparent); }
   .hero-copy { position: static; padding: 22px 24px 28px; }
   .hero-copy .role, .hero-copy .name { position: static; transform: none; }
   .hero-copy .name { margin-top: 18px; }
