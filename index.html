@@ -158,9 +158,17 @@ button { font: inherit; color: inherit; }
 .wk.playing .play { opacity: 0; transform: translate(-50%, -50%) scale(.8); }
 .wk-body { padding: 0 22px 22px; }
 /* "Created by Sameer Saifi" badge, same look as the one in the Ladakh video */
-.made-by { position: absolute; z-index: 1; top: 62px; left: 50%; transform: translateX(-50%); padding: 6px 13px; border-radius: 999px; background: #EFE8DA; color: #6B5B4B;
-  border: 1px solid rgba(255, 255, 255, .5); box-shadow: 0 4px 14px rgba(0, 0, 0, .25); font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
-.made-by b { color: #4A3A2C; font-weight: 700; }
+/* "Created by Sameer Saifi" badge: top-center with a small gap, coloured to match each website */
+.made-by { position: absolute; z-index: 1; top: 14px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px; border-radius: 999px;
+  font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 4px 14px rgba(0, 0, 0, .3); }
+.made-by b { font-weight: 700; }
+/* NJ Sports: dark navy pill, cyan dot, mono type */
+.made-by.nj { background: rgba(10, 22, 40, .88); color: #8FB8C9; border: 1px solid rgba(34, 211, 238, .35); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; }
+.made-by.nj b { color: #E9F7FB; }
+.made-by.nj::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #22D3EE; box-shadow: 0 0 8px #22D3EE; }
+/* VEX: frosted white glass like its nav bar */
+.made-by.vex { top: 58px; /* sits just under the VEX video's own nav bar */ background: rgba(255, 255, 255, .16); color: rgba(255, 255, 255, .8); border: 1px solid rgba(255, 255, 255, .3); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.made-by.vex b { color: #fff; }
 .wk h3 { margin: 0 0 16px; font-size: clamp(21px, 1.9vw, 25px); font-weight: 500; letter-spacing: -.02em; }
 .pills { display: flex; gap: 8px; overflow: hidden; }
 .pill { flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; background: #1A1A1A; font-size: 13px; font-weight: 500; white-space: nowrap; }
@@ -375,7 +383,7 @@ footer { background: #0B0B0B; }
     </a>
     <a class="wk small rv d1" href="https://nj-info.in/" target="_blank" rel="noopener">
       <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/IvtNM9fU2HT1oUzbuaPDevi6ic.mp4"></video>
-      <span class="made-by">Created by <b>Sameer Saifi</b></span>
+      <span class="made-by nj">Created by <b>Sameer Saifi</b></span>
       <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
       <div class="wk-body"><h3>NJ Sports</h3>
         <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Cricket &amp; Football Community</span>
@@ -383,7 +391,7 @@ footer { background: #0B0B0B; }
     </a>
     <a class="wk small rv" href="https://sameersaifi07.github.io/Website-I-ve-Built/vex/" target="_blank" rel="noopener">
       <video muted loop playsinline preload="none" data-src="https://framerusercontent.com/assets/wxJxeKsKli9l46O5IMfxS9v4io.mp4"></video>
-      <span class="made-by">Created by <b>Sameer Saifi</b></span>
+      <span class="made-by vex">Created by <b>Sameer Saifi</b></span>
       <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
       <div class="wk-body"><h3>VEX</h3>
         <div class="pills"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>Video Hero</span>
